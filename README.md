@@ -67,7 +67,7 @@ Buyer & Seller
 
 System
 - Integrate Mapping Service:
-        Implement mapping for property locations.
+        Implement mapping for property locations..
 - Geocode Property Locations:
         Convert property addresses into geographical coordinates.
 - Display Property Listings on Map:
