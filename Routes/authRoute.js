@@ -28,7 +28,6 @@ router.get("/logout", auth, logout);
 
 router.post("/verification/:id", auth, verifyEmail);
 router.get("/resend-code/:id", auth, resendCode);
-// router.use(verifyToken);
 
 router.post("/upload", upload, auth, uploadImage);
 router.post("/complete-signup", auth, completeSignup);

@@ -50,20 +50,6 @@ userSchema.methods.generateAuthToken = async function () {
   await user.save();
   return token;
 };
-// userSchema.methods.generateAuthToken = function () {
-//   const token = jwt.sign(
-//     {
-//       _id: this._id,
-//       role: this.role,
-//     },
-//     process.env.JWT_SECRET,
-//     {
-//       expiresIn: process.env.JWT_EXPIRES_IN,
-//     }
-//   );
-
-//   return token;
-// };
 
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
