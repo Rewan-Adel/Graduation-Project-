@@ -9,7 +9,6 @@ const ErrorHandler = require('./Controllers/errCtr');
 const appError = require('./Helpers/appError');
 
 const authRouter = require('./Routes/authRoute');
-// const userRouter = require('./Routes/userRoute');
 
 app.use(cors());
 app.use(helmet());
