@@ -46,12 +46,13 @@ exports.otpSending = asyncHandler(async (user, res, next) => {
   const html = `<h2>Hello ${user.username} </h2>
         <div style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
         <div style="margin-top: 20px;">
+            <span style="color: #000; font-weight: bold;">Home Finder</span>
             <p style="color: #666;">Your verification code is:</p>
             <p style="color: #333; font-size: 24px; font-weight: bold;">${Otp}</p>
             <p style="color: #666;">Please note that for added security this link becomes invalid after 1:30 hours.</p>
         </div>
     </div>`;
-  let result = await sendEmail(user.email, "Home Finder", html, res, next);
+  let result = await sendEmail(user.email, "Verify your email", html, res, next);
   return result;
 });
 
@@ -59,8 +60,9 @@ exports.resetPassEmail = asyncHandler(async (link, user, res, next) => {
   const html = `<h2>Hello ${user.username} </h2>
         <div style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
         <div style="margin-top: 20px;">
-            <p style="color: #666;">you can reset your password by clicking the link below:</p>
-            <a href="${link}" >reset password link</a>
+            <span style="color: #000; font-weight: bold;">Home Finder</span>
+            <p style="color: #666;">You can reset your password by clicking the link below:</p>
+            <a href="${link}" >Reset password link</a>
             <p style="color: #666;">Please note that for added security this link becomes invalid after 15 minutes.</p>
         </div>
     </div>`;
