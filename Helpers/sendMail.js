@@ -51,7 +51,7 @@ exports.otpSending = asyncHandler(async (user, res, next) => {
             <p style="color: #666;">Please note that for added security this link becomes invalid after 1:30 hours.</p>
         </div>
     </div>`;
-  let result = await sendEmail(user.email, "My  Residence", html, res, next);
+  let result = await sendEmail(user.email, "Home Finder", html, res, next);
   return result;
 });
 
