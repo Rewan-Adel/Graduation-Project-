@@ -108,7 +108,10 @@ exports.setLocation = asyncHandler(async (req, res, next) => {
   if (!user.isVerified)
     return next(new appError("Please verify your email first", 400));
 
-  user.location = req.body.location;
+  user.location = {
+    longitude: Number(req.body.location.longitude),
+    latitude: Number(req.body.location.latitude),
+  };
 
   await user.save();
   return res.status(200).json({

@@ -19,7 +19,14 @@ const userSchema = new mongoose.Schema(
       public_id: { type: String },
     },
 
-    location: { type: String },
+    location: {
+      longitude: {
+        type: Number,
+      },
+      latitude: {
+        type: Number,
+      }
+    },
     wishlist: [{ type: mongoose.Schema.ObjectId, ref: "Products" }],
     tokens: [
       {
