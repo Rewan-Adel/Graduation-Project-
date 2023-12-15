@@ -184,9 +184,9 @@ exports.resetPassword = asyncHandler(async (req, res, next) => {
 });
 
 exports.logout = asyncHandler(async (req, res, next) => {
-  req.user.tokens = req.user.tokens.filter(
-    (token) => token.token !== req.token
-  );
+  const user = await User.findById(req.user._id);
+  user.tokens = user.tokens.filter((token) => token.token !== req.token);
+  await user.save();
   return res.status(200).json({
     status: "success",
   });
