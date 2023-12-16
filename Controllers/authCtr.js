@@ -107,8 +107,8 @@ exports.setLocation = asyncHandler(async (req, res, next) => {
 
   if (!user.isVerified)
     return next(new appError("Please verify your email first", 400));
-  const longitude = req.params.longitude;
-  const latitude = req.params.latitude;
+  const longitude = req.query.longitude;
+  const latitude = req.query.latitude;
   if (!longitude || !latitude)
     return next(new appError("Please provide a valid location", 400));
   user.location = {
