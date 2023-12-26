@@ -12,6 +12,8 @@ const {
   resetPassword,
   forgotPassword,
   logout,
+  getUser,
+  updateUser
 } = require("../Controllers/authCtr");
 
 const auth = require("../Middleware/auth");
@@ -32,5 +34,7 @@ router.get("/resend-code/:id", auth, resendCode);
 router.post("/upload", upload, auth, uploadImage);
 router.post("/complete-signup", auth, completeSignup);
 router.post("/location", auth, setLocation);
+router.get("/get-user", auth, getUser);
+router.patch("/update-user", auth, updateUser);
 
 module.exports = router;
