@@ -30,7 +30,7 @@ exports.signUp = asyncHandler(async (req, res, next) => {
     "https://res.cloudinary.com/dgslxtxg8/image/upload/v1703609152/iwonvcvpn6oidmyhezvh.jpg";
   user.image.public_id = "iwonvcvpn6oidmyhezvh";
   await user.save();
-  let sending = otpSending(user, res, next);
+  let sending = await otpSending(user, res, next);
   if (sending === "error") {
     await user.deleteOne();
     return next(new appError("Something went wrong", 500));
