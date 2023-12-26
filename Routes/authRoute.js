@@ -13,7 +13,10 @@ const {
   forgotPassword,
   logout,
   getUser,
-  updateUser
+  updateUser,
+  deleteProfilePicture,
+  deleteUser,
+  changePassword,
 } = require("../Controllers/authCtr");
 
 const auth = require("../Middleware/auth");
@@ -31,10 +34,15 @@ router.get("/logout", auth, logout);
 router.post("/verification/:id", auth, verifyEmail);
 router.get("/resend-code/:id", auth, resendCode);
 
-router.post("/upload", upload, auth, uploadImage);
+router.post("/upload-image", upload, auth, uploadImage);
 router.post("/complete-signup", auth, completeSignup);
 router.post("/location", auth, setLocation);
+
 router.get("/get-user", auth, getUser);
 router.patch("/update-user", auth, updateUser);
+router.patch("/change-password", auth, changePassword);
+
+router.delete("/delete-profile-picture", auth, deleteProfilePicture);
+router.delete("/delete-user", auth, deleteUser);
 
 module.exports = router;
