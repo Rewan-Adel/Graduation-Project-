@@ -76,6 +76,7 @@ userSchema.methods.toJSON = function () {
   delete userObject.expireToken;
   delete userObject.tokens;
   delete userObject.__v;
+  delete userObject.wishlist
   return userObject;
 };
 
