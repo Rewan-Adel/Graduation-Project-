@@ -41,6 +41,11 @@ exports.completeSignupValidation = function (user) {
       .trim()
       .messages({ "string.pattern.base": "Name must be letters only" }),
     phone: Joi.string().min(11).trim(),
+    gender: Joi.string()
+      .valid("male", "Male", "female", "Female")
+      .messages({
+        "any.only": '"gender" must be either male, Male, female, or Female',
+      }),
   }).unknown();
   let { error, value } = userSchema.validate(user);
   if (error) error = errorUpdate(error);
