@@ -191,20 +191,25 @@ exports.resetPassword = asyncHandler(async (req, res, next) => {
 
 exports.updateUser = asyncHandler(async (req, res, next) => {
   const { value, error } = completeSignupValidation(req.body);
+  if (error) return next(new appError(error, 400));
+
   let user = await User.findById(req.user._id);
   if (!user) return next(new appError("User not found", 404));
   user.firstName = value.firstName;
   user.lastName = value.lastName;
   user.phone=value.phone;
-  res.status(200).json({
+  await user.save();
+  
+  return res.status(200).json({
     status: "success",
     user,
   });
 });
+
 exports.getUser = asyncHandler(async (req, res, next) => {
   let user = await User.findById(req.user._id);
   if (!user) return next(new appError("User not found", 404));
-  res.status(200).json({
+  return res.status(200).json({
     status: "success",
     user,
   });
