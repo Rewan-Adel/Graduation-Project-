@@ -5,7 +5,7 @@ const { otpSending, resetPassEmail } = require("../Helpers/sendMail");
 const cloudinary = require("../config/cloudinary");
 const crypto = require("crypto");
 const { uploadImage } = require("./globalFun");
-
+const getLoc = require("../Helpers/getLocation");
 const {
   signupValidation,
   completeSignupValidation,
@@ -122,11 +122,16 @@ exports.setLocation = asyncHandler(async (req, res, next) => {
     longitude: Number(longitude),
     latitude: Number(latitude),
   };
+  const location = await getLoc(latitude, longitude);
 
+  for (let key in location) {
+    user.location[key] = location[key];
+  }
   await user.save();
   return res.status(200).json({
     status: "success",
     user,
+    location,
   });
 });
 

@@ -25,6 +25,18 @@ const userSchema = new mongoose.Schema(
       },
       latitude: {
         type: Number,
+      },
+      city:{
+        type:String
+      },
+      state:{
+        type:String
+      },
+      country:{
+        type:String
+      },
+      fullAddress:{
+        type:String
       }
     },
     wishlist: [{ type: mongoose.Schema.ObjectId, ref: "Products" }],
