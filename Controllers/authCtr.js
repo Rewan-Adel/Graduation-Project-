@@ -76,7 +76,7 @@ exports.resendCode = asyncHandler(async (req, res, next) => {
       new appError("You have exceeded the maximum number of attempts, try again later", 400)
     );
   }
-  let sending = otpSending(user, res, next);
+  let sending = await otpSending(user, res, next);
   if (sending === "error")
     return next(new appError("Something went wrong", 500));
 
@@ -160,7 +160,7 @@ exports.forgotPassword = asyncHandler(async (req, res, next) => {
 
   let link = `http://${req.headers.host}${req.baseUrl}/verify-token/${token}/${user._id}`;
 
-  let sending = resetPassEmail(link, user, res, next);
+  let sending = await resetPassEmail(link, user, res, next);
   if (sending === "error") {
     return next(new appError("Something went wrong", 500));
   }
