@@ -53,6 +53,7 @@ exports.otpSending = asyncHandler(async (user, res, next) => {
         </div>
     </div>`;
   let result = await sendEmail(user.email, "Verify your email", html, res, next);
+  console.log(result);
   return result;
 });
 
