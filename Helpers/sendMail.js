@@ -12,7 +12,7 @@ const config = {
 };
 
 const generateOtp = () => {
-  const otp = Math.floor(1000 + Math.random() * 9000);
+  const otp = Math.floor(100000 + Math.random() * 9000);
   return otp;
 };
 
@@ -53,6 +53,7 @@ exports.otpSending = asyncHandler(async (user, res, next) => {
         </div>
     </div>`;
   let result = await sendEmail(user.email, "Verify your email", html, res, next);
+  console.log(result);
   return result;
 });
 

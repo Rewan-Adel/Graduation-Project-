@@ -48,6 +48,7 @@ const userSchema = new mongoose.Schema(
         },
       },
     ],
+    chatWith: [{ type: mongoose.Schema.ObjectId, ref: "Users", default: []}],
     otp: { type: Number },
     counter: { type: Number, default: 0 },
     isVerified: { type: Boolean, default: false },
@@ -63,7 +64,8 @@ userSchema.methods.generateAuthToken = async function () {
   const user = this;
   const token = jwt.sign(
     { _id: user._id.toString(), role: user.role },
-    process.env.JWT_SECRET
+    process.env.JWT_SECRET,
+    { expiresIn: process.env.JWT_EXPIRES_IN }
   );
   user.tokens = user.tokens.concat({ token });
   await user.save();
@@ -89,6 +91,7 @@ userSchema.methods.toJSON = function () {
   delete userObject.tokens;
   delete userObject.__v;
   delete userObject.wishlist
+  delete userObject.chatWith
   return userObject;
 };
 

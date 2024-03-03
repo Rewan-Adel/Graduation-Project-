@@ -1,6 +1,7 @@
 const appError = require('../Helpers/appError');
 
 const devErrorHandler = ( res, error)=>{
+    console.log("Error ", error);
     res.status(error.statusCode).json({
        status     : error.status,
        message    : error.message,
@@ -15,7 +16,6 @@ const prodErrorHandler = (res, error)=>{
             message : error.message
         });
     }else{
-        console.log("Error ", error)
         res.status(500).json({
             status  : 'error',
             message : 'something went wrong!',
@@ -43,10 +43,14 @@ module.exports = (error, req, res, next )=>{
     error.status = error.status || 'error' ;
 
     if(process.env.NODE_ENV == 'development'){
+            console.log("Error ", error);
+
         devErrorHandler(res, error);
     }
     else{
         if(error.name === 'CastError')       error = castErrorHandler(error);
+            console.log("Error ", error);
+
         prodErrorHandler(res, error);
     }
 
