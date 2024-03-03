@@ -1,17 +1,17 @@
-const User = require("../Models/User");
+const User = require("../Models/User.js");
 const asyncHandler = require("express-async-handler");
-const appError = require("../Helpers/appError");
-const { otpSending, resetPassEmail } = require("../Helpers/sendMail");
-const cloudinary = require("../config/cloudinary");
+const appError = require("../Helpers/appError.js");
+const { otpSending, resetPassEmail } = require("../Helpers/sendMail.js");
+const cloudinary = require("../config/cloudinary.js");
 const crypto = require("crypto");
 const { uploadImage } = require("./globalFun");
-const getLoc = require("../Helpers/getLocation");
+const getLoc = require("../Helpers/getLocation.js");
 const {
   signupValidation,
   completeSignupValidation,
   loginValidation,
   updateUserValidation,
-} = require("../Validation/validation.js");
+} = require("../Validation/auth.validation.js");
 
 exports.signUp = asyncHandler(async (req, res, next) => {
   let { value, error } = signupValidation(req.body);

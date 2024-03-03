@@ -48,6 +48,7 @@ const userSchema = new mongoose.Schema(
         },
       },
     ],
+    chatWith: [{ type: mongoose.Schema.ObjectId, ref: "Users", default: []}],
     otp: { type: Number },
     counter: { type: Number, default: 0 },
     isVerified: { type: Boolean, default: false },
@@ -90,6 +91,7 @@ userSchema.methods.toJSON = function () {
   delete userObject.tokens;
   delete userObject.__v;
   delete userObject.wishlist
+  delete userObject.chatWith
   return userObject;
 };
 
