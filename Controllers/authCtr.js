@@ -175,7 +175,7 @@ exports.forgotPassword = asyncHandler(async (req, res, next) => {
 });
 
 exports.verifyPasswordOtp = asyncHandler(async (req, res, next) => {
-  const email = req.body.email.toLowerCase().trim();
+  const email = req.params.email.toLowerCase().trim();
   let user = await User.findOne({ email });
 
   if (!user) return next(new appError("User not found", 404));
@@ -195,7 +195,7 @@ exports.verifyPasswordOtp = asyncHandler(async (req, res, next) => {
 });
 
 exports.resetPassword = asyncHandler(async (req, res, next) => {
-  const email = req.body.email.toLowerCase().trim();
+  const email = req.params.email.toLowerCase().trim();
   let user = await User.findOne({ email });
 
   if (!user) return next(new appError("User not found", 404));
@@ -226,7 +226,7 @@ exports.resetPassword = asyncHandler(async (req, res, next) => {
 });
 
 exports.resendPassOtp = asyncHandler(async (req, res, next) => {
-  const email = req.body.email.toLowerCase().trim();
+  const email = req.params.email.toLowerCase().trim();
 
   let user = await User.findOne({ email });
   if (!user) return next(new appError("Invalid Email", 404));
