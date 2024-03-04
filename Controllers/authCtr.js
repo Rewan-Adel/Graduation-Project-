@@ -155,6 +155,9 @@ exports.logIn = asyncHandler(async (req, res, next) => {
     status: "success",
     message: "Logged in successfully",
     token,
+    user:{
+      isVerified:user.isVerified
+    }
   });
 });
 
