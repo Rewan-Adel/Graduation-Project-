@@ -41,6 +41,7 @@ exports.signUp = asyncHandler(async (req, res, next) => {
     status: "success",
     message: "Verification code has been sent",
     token,
+    user
   });
 });
 
