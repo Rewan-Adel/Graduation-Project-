@@ -88,8 +88,6 @@ userSchema.methods.toJSON = function () {
   delete userObject.password;
   delete userObject.otp;
   delete userObject.counter;
-  delete userObject.resetToken;
-  delete userObject.expireToken;
   delete userObject.tokens;
   delete userObject.__v;
   delete userObject.wishlist;
