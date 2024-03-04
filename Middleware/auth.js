@@ -4,6 +4,9 @@ const User = require("../Models/User.js");
 const asyncHandler = require("express-async-handler");
 
 module.exports = asyncHandler(async (req, res, next) => {
+  if (!req.header("Authorization"))
+    return next(new appError("Please login to get access", 401));
+  
   const token = req.header("Authorization").replace("Bearer ", "");
   if (!token) return next(new appError("Please login to get access", 401));
 
@@ -14,7 +17,10 @@ module.exports = asyncHandler(async (req, res, next) => {
     _id: decoded._id,
     "tokens.token": token,
   });
+  
   if (!user) return next(new appError("Invalid token or not verified", 404));
+  // if (!user.isVerified) return next(new appError("Please verify your email", 401));
+
   req.token = token;
   req.user = user;
   next();
