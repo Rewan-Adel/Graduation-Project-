@@ -175,6 +175,7 @@ exports.forgotPassword = asyncHandler(async (req, res, next) => {
   return res.status(200).json({
     status: "success",
     message: "Verification code has been sent",
+    email
   });
 });
 
@@ -195,6 +196,7 @@ exports.verifyPasswordOtp = asyncHandler(async (req, res, next) => {
   return res.status(200).json({
     status: "success",
     message: "Verification succeed.",
+    email
   });
 });
 
@@ -258,6 +260,7 @@ exports.resendPassOtp = asyncHandler(async (req, res, next) => {
   return res.status(200).json({
     status: "success",
     message: "Verification code has been sent",
+    email
   });
 });
 
