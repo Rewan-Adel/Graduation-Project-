@@ -17,7 +17,8 @@ const {
   deleteUser,
   changePassword,
   resendPassOtp,
-  verifyPasswordOtp
+  verifyPasswordOtp,
+  logoutAll
 } = require("../Controllers/authCtr");
 
 const auth = require("../Middleware/auth");
@@ -27,14 +28,14 @@ router.post("/login", logIn);
 
 router.post("/verification/:id", auth, verifyEmail);
 router.get("/resend-code/:id", auth, resendCode);
-router.post("/verify-pass-otp", verifyPasswordOtp);
 
 router.get("/logout", auth, logout);
-router.get("/logout-all", auth, logout);
+router.get("/logout-all", auth, logoutAll);
 
 router.post("/forgot-pass", forgotPassword);
-router.patch("/reset-pass", resetPassword);
-router.post("/resend-pass-otp", resendPassOtp);
+router.patch("/reset-pass/:email", resetPassword);
+router.post("/resend-pass-otp/:email", resendPassOtp);
+router.post("/verify-pass-otp/:email", verifyPasswordOtp);
 
 router.post("/upload-image", upload, auth, uploadImage);
 router.post("/complete-signup", auth, completeSignup);
