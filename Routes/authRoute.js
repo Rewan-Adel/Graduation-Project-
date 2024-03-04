@@ -17,7 +17,8 @@ const {
   deleteUser,
   changePassword,
   resendPassOtp,
-  verifyPasswordOtp
+  verifyPasswordOtp,
+  logoutAll
 } = require("../Controllers/authCtr");
 
 const auth = require("../Middleware/auth");
@@ -29,7 +30,7 @@ router.post("/verification/:id", auth, verifyEmail);
 router.get("/resend-code/:id", auth, resendCode);
 
 router.get("/logout", auth, logout);
-router.get("/logout-all", auth, logout);
+router.get("/logout-all", auth, logoutAll);
 
 router.post("/forgot-pass", forgotPassword);
 router.patch("/reset-pass/:email", resetPassword);
