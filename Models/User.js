@@ -26,18 +26,18 @@ const userSchema = new mongoose.Schema(
       latitude: {
         type: Number,
       },
-      city:{
-        type:String
+      city: {
+        type: String,
       },
-      state:{
-        type:String
+      state: {
+        type: String,
       },
-      country:{
-        type:String
+      country: {
+        type: String,
       },
-      fullAddress:{
-        type:String
-      }
+      fullAddress: {
+        type: String,
+      },
     },
     wishlist: [{ type: mongoose.Schema.ObjectId, ref: "Products" }],
     tokens: [
@@ -48,12 +48,14 @@ const userSchema = new mongoose.Schema(
         },
       },
     ],
-    chatWith: [{ type: mongoose.Schema.ObjectId, ref: "Users", default: []}],
+    chatWith: [{ type: mongoose.Schema.ObjectId, ref: "Users", default: [] }],
     otp: { type: Number },
+    passwordOtp: {
+      otp: { type: Number, default: null },
+      isVerified: { type: Boolean, default: false },
+    },
     counter: { type: Number, default: 0 },
     isVerified: { type: Boolean, default: false },
-    resetToken: { type: String },
-    expireToken: { type: Date },
   },
   {
     timestamps: true,
@@ -90,8 +92,9 @@ userSchema.methods.toJSON = function () {
   delete userObject.expireToken;
   delete userObject.tokens;
   delete userObject.__v;
-  delete userObject.wishlist
-  delete userObject.chatWith
+  delete userObject.wishlist;
+  delete userObject.chatWith;
+  delete userObject.passwordOtp;
   return userObject;
 };
 

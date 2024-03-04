@@ -54,13 +54,15 @@ exports.completeSignupValidation = function (user) {
 
 exports.loginValidation = function (user) {
   const userSchema = Joi.object({
-    email: Joi.string().email().min(5).max(50).trim().required(),
+    email: Joi.string().email().min(5).max(50).trim(),
+    username: Joi.string().min(6).max(25).trim(),
     password: Joi.string().min(8).max(50).required().trim(),
   }).unknown();
   let { error, value } = userSchema.validate(user);
   if (error) error = errorUpdate(error);
   return { value, error };
 };
+
 exports.updateUserValidation = function (user) {
   const userSchema = Joi.object({
     firstName: Joi.string()
@@ -90,6 +92,17 @@ exports.updateUserValidation = function (user) {
       })
       .lowercase()
       .trim(),
+  }).unknown();
+  let { error, value } = userSchema.validate(user);
+  if (error) error = errorUpdate(error);
+  return { value, error };
+};
+exports.resetPasswordValidation = function (user) {
+  const userSchema = Joi.object({
+    password: Joi.string().min(8).required().max(50).trim(),
+    confirmPass: Joi.valid(Joi.ref("password")).messages({
+      "any.only": "Passwords do not match",
+    }),
   }).unknown();
   let { error, value } = userSchema.validate(user);
   if (error) error = errorUpdate(error);

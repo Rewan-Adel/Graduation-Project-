@@ -1,4 +1,4 @@
-# My_Residence
+# Home finder
 Welcome to the My Residence app, a comprehensive platform designed to simplify the process of finding and exploring homes for sale or rent. Whether you're a user searching for the perfect property, an agent or seller looking to list homes, or an admin overseeing the platform, My Residence has you covered.
 
 ## Table of Contents
