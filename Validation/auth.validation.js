@@ -54,8 +54,7 @@ exports.completeSignupValidation = function (user) {
 
 exports.loginValidation = function (user) {
   const userSchema = Joi.object({
-    email: Joi.string().email().min(5).max(50).trim(),
-    username: Joi.string().min(6).max(25).trim(),
+    email: Joi.string().min(4).max(50).trim(),
     password: Joi.string().min(8).max(50).required().trim(),
   }).unknown();
   let { error, value } = userSchema.validate(user);

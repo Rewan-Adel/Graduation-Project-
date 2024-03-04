@@ -143,7 +143,7 @@ exports.logIn = asyncHandler(async (req, res, next) => {
   if (error) return next(new appError(error, 400));
 
   let user = await User.findOne({ email: value.email });
-  if (!user) user = await User.findOne({ username: value.username });
+  if (!user) user = await User.findOne({ username: value.email });
   if (!user) return next(new appError("Invalid email, username, or password", 400));
 
   let isPassMatch = await user.passwordMatch(value.password);
