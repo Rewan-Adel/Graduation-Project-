@@ -12,11 +12,20 @@ const imageFilter = function (req, file, cb) {
   }
   cb(null, true);
 };
-
-module.exports = multer({
+const uploadSingle = multer({
   limits: {
     fileSize: 2000000,
   },
   storage: Storage,
   fileFilter: imageFilter,
 }).single("image");
+
+const uploadMultiple = multer({
+  limits: {
+    fileSize: 2000000,
+  },
+  storage: Storage,
+  fileFilter: imageFilter,
+}).array("images", 10); // 10 is the max number of images
+
+module.exports = {uploadSingle, uploadMultiple}

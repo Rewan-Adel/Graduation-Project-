@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const upload = require("../Helpers/multer");
+const {uploadSingle} = require("../Helpers/multer");
 const {
   signUp,
   verifyEmail,
@@ -37,7 +37,7 @@ router.patch("/reset-pass/:email", resetPassword);
 router.post("/resend-pass-otp/:email", resendPassOtp);
 router.post("/verify-pass-otp/:email", verifyPasswordOtp);
 
-router.post("/upload-image", upload, auth, uploadImage);
+router.post("/upload-image", uploadSingle, auth, uploadImage);
 router.post("/complete-signup", auth, completeSignup);
 router.post("/location", auth, setLocation);
 
